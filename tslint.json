@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-plugin-prettier",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "array-type": false,
+    "jsx-boolean-value": false,
+    "member-access": false,
+    "interface-name": [true, "never-prefix"],
+    "no-implicit-dependencies": [true, "dev"],
+    "no-object-literal-type-assertion": false,
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
+    "prettier": true,
+    "jsx-no-lambda": false,
+    "no-shadowed-variable": false,
+    "max-classes-per-file": false
+  }
+}
