@@ -12,6 +12,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "module": "commonjs",
     "lib": ["dom", "es6", "es2015", "es2016", "es2017"],
     "target": "es5",
