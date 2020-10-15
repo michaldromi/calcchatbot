@@ -1,3 +1,17 @@
+export enum ActionTypes {
+  setName = "set_name",
+  setStep = "set_step",
+}
+
+enum Steps {
+  hello = "hello",
+  letsCalc = "letsCalc",
+  result = "result",
+  noname = "noname",
+}
+
+
+
 export const data = {
   hello: {
     message: [

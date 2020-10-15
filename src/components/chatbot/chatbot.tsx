@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import {
   ChatBotWrapper,
   ChatInputSection,
@@ -8,22 +8,22 @@ import SendIcon from "../../assets/icons/send-icon";
 import { isMathExpression } from "../../lib/helpers";
 import { data } from "./steps";
 import UserBubble from "./user-bubbles";
+import { ActionTypes, chatReducer, ChatState, Steps } from "./use-chat-state";
 
 const ChatBot = () => {
   const inputRef = useRef(null);
-  const [name, setName] = useState("");
-  const [val, setVal] = useState("");
 
-  useEffect(() => {
-    // console.log(val);
-  }, [val]);
+    const [state, dispatch] = useReducer(chatReducer, {
+      name: "",
+      step: Steps.hello,
+  };
 
   const handleSubmit = () => {
-    const val = inputRef.current.value.trim();
+    const val = inputRef?.current?.value.trim();
     const isMath = isMathExpression(val);
 
     if (!name) {
-      isMath ? console.log("no name") : setName(val);
+      isMath ? dispatch({type: ActionTypes.SetStep,step:Steps.noname}) : dispatch({type: ActionTypes.SetName,name:val});
     } else {
       isMath ? console.log("calc", val) : console.log("try again");
     }
