@@ -5,3 +5,7 @@ export const colors = {
   DarkSmoke: "#4a4a4a",
   HotPink: "#ff0078",
 };
+
+export const baseFontSize = 12;
+
+export const pxToRem = (px: number): string => `${px / baseFontSize}rem`;

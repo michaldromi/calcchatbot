@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  AvatarPlaceholder,
+  AvatarWrapper,
   MessagesWrapper,
   UserBubbleWrapper,
 } from "./bubble.styled";
@@ -13,6 +13,7 @@ interface UserBubbleProps {
 }
 
 const UserBubble = ({ content, avatarSrc, right }: UserBubbleProps) => {
+  const [currentAnimationIdx, setCurrentIdx] = useState(0);
 
   const getBubblePosition = ({ idx, length }) => {
     if (length <= 1) {
@@ -28,16 +29,18 @@ const UserBubble = ({ content, avatarSrc, right }: UserBubbleProps) => {
 
   return (
     <UserBubbleWrapper right={right}>
-      {avatarSrc ? (
-        <img src={avatarSrc} width={40} height={40} />
-      ) : (
-        <AvatarPlaceholder />
-      )}
+      <AvatarWrapper>
+        {avatarSrc ? <img src={avatarSrc} width={40} height={40} /> : null}
+      </AvatarWrapper>
       <MessagesWrapper right={right}>
         {content.map((text, idx) => (
           <Bubble
+            key={`${text}_${idx}`}
             right={right}
             position={getBubblePosition({ idx, length: content.length })}
+            index={idx}
+            currentAnimationIdx={currentAnimationIdx}
+            setAnimation={setCurrentIdx}
           >
             {text}
           </Bubble>

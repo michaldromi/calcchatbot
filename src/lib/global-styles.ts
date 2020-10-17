@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { baseFontSize } from "./style-utils";
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -9,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     body, html {
       background: whitesmoke;
+      font-size: ${baseFontSize}px;
     }
     input {
       -webkit-appearance: none;
