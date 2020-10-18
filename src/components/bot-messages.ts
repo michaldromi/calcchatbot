@@ -21,3 +21,11 @@ export const BotMsgs = {
     content: ["I don't know how to calculate that..."],
   },
 };
+
+export const niceToMeet = (name: string) => [`Nice to meet you ${name}!`];
+
+export const getHasNameContent = (name: string) => [
+  `Nice to see you again ${name}. Let’s pick this up from
+where we left off`,
+  "List any mathematical expression you can think of - I’ll crunch it in no time",
+];

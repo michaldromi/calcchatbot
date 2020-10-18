@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { BubbleStyled } from "./bubble.styled";
 
 export type PositionType = "" | "top" | "middle" | "bottom";
@@ -34,4 +34,4 @@ const Bubble = ({
   );
 };
 
-export default Bubble;
+export default memo(Bubble);

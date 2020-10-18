@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import UserBubble from "../user-bubbles/index";
 import { MessagePanelWrapper } from "./panel.styled";
 
@@ -12,8 +12,9 @@ const MessagePanel = ({ messages }) => {
 
   return (
     <MessagePanelWrapper>
-      {messages.map((it) => (
+      {messages.map((it, idx) => (
         <UserBubble
+          key={`${it.content}_${idx}`}
           content={it.content}
           avatarSrc={getAvatar(it.isUser)}
           right={it.isUser}
@@ -23,4 +24,4 @@ const MessagePanel = ({ messages }) => {
   );
 };
 
-export default MessagePanel;
+export default memo(MessagePanel);

@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import { colors, pxToRem } from "../../lib/style-utils";
-import { easing, scale, messageBubbleScale } from "../../lib/animation.styled";
+import {
+  easing,
+  scale,
+  messageBubbleScale,
+  fadeIn,
+} from "../../lib/animation.styled";
 import { PositionType } from "./bubble";
 
 export const UserBubbleWrapper = styled.div<{
@@ -22,6 +27,7 @@ export const AvatarWrapper = styled.div`
   border-radius: 50%;
   background: ${colors.silver300};
   will-change: transform;
+  transition: transform ease 0.7s;
   transform: scale(0);
   animation: 0.3s ${scale} 0.2s ${easing} forwards;
 `;
@@ -32,7 +38,7 @@ export const BubbleStyled = styled.div<{
   play?: boolean;
 }>`
   max-width: calc(100% - 40px);
-  min-width: 100px;
+  min-width: 70px;
   border-radius: 25px;
   margin-bottom: 5px;
   font-size: ${pxToRem(15)};
@@ -56,7 +62,7 @@ export const BubbleStyled = styled.div<{
   height: 0;
   overflow: hidden;
   transform: scale(0) translate3d(0, -10px, 0);
-  animation: 0.3s ${messageBubbleScale} 0.6s ${easing} forwards;
+  animation: 0.4s ${messageBubbleScale} 0.6s ${easing} forwards;
   animation-play-state: ${({ play }) => (play ? "running" : "paused")};
 `;
 

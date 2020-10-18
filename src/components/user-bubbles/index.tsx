@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   AvatarWrapper,
   MessagesWrapper,
@@ -27,6 +27,13 @@ const UserBubble = ({ content, avatarSrc, right }: UserBubbleProps) => {
     }
   };
 
+  const setIndexCallback = useCallback(
+    (idx) => {
+      setCurrentIdx(idx);
+    },
+    [currentAnimationIdx]
+  );
+
   return (
     <UserBubbleWrapper right={right}>
       <AvatarWrapper>
@@ -40,7 +47,7 @@ const UserBubble = ({ content, avatarSrc, right }: UserBubbleProps) => {
             position={getBubblePosition({ idx, length: content.length })}
             index={idx}
             currentAnimationIdx={currentAnimationIdx}
-            setAnimation={setCurrentIdx}
+            setAnimation={setIndexCallback}
           >
             {text}
           </Bubble>

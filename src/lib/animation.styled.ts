@@ -15,9 +15,3 @@ export const messageBubbleScale = keyframes`
     padding: 10px 20px;
   }
 `;
-
-export const semiFade = keyframes`
-  to {
-    opacity: 0.5;
-  }
-`;

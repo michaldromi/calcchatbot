@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import SendIcon from "../../assets/icons/send-icon";
-import { calc, isMathExpression } from "../../lib/helpers";
+import { calc, isMathExpression } from "../../lib/math-calc";
 import { ActionTypes } from "../use-chat-state";
-import { BotMsgs } from "../bot-messages";
+import { BotMsgs, niceToMeet } from "../bot-messages";
 import { ChatInputSection, ChatInputWrapper } from "./chat-input.styled";
+import { setValueOnSessionStorage } from "../../lib/handle-storage";
 
 const ChatInput = ({ dispatch, name }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -14,9 +15,10 @@ const ChatInput = ({ dispatch, name }) => {
 
   const handleSetName = ({ val }) => {
     dispatch({ type: ActionTypes.SetName, name: val });
+    setValueOnSessionStorage({ key: "name", value: val });
     dispatch({
       type: ActionTypes.SetMessage,
-      message: [`Nice to meet you ${val}!`, ...BotMsgs.letsCalc.content],
+      message: [niceToMeet(val), ...BotMsgs.letsCalc.content],
     });
   };
 
