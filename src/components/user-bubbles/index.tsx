@@ -22,9 +22,9 @@ const UserBubble = ({ content, avatarSrc, right }: UserBubbleProps) => {
       return "top";
     } else if (idx === length - 1) {
       return "bottom";
+    } else {
+      return "middle";
     }
-
-    return "middle";
   };
 
   return (

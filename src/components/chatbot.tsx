@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
 import { ChatBotWrapper } from "./chatbot.styled";
 import { chatReducer } from "./use-chat-state";
-import MessagePanel from "./messages-panel";
+import MessagePanel from "./messages-panel/index";
 import { BotMsgs } from "./bot-messages";
-import ChatInput from "./chat-input";
+import ChatInput from "./chat-input/index";
 
 const ChatBot = () => {
   const [state, dispatch] = useReducer(chatReducer, {

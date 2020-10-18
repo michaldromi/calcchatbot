@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { colors } from "../../../lib/style-utils";
+import { colors } from "../../lib/style-utils";
 
 export const ChatInputSection = styled.div`
   width: 100%;
-  background: ${colors.Silver100};
+  background: ${colors.silver100};
   padding: 15px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 `;
@@ -11,7 +11,7 @@ export const ChatInputSection = styled.div`
 export const ChatInputWrapper = styled.div`
   position: relative;
   input {
-    border: 1px solid ${colors.Silver400};
+    border: 1px solid ${colors.silver400};
     outline: 0;
     height: 40px;
     line-height: 40px;
@@ -27,6 +27,6 @@ export const ChatInputWrapper = styled.div`
     position: absolute;
     right: 10px;
     top: calc(50% - 12px);
-    color: ${colors.HotPink};
+    color: ${colors.hotPink};
   }
 `;

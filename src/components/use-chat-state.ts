@@ -3,14 +3,6 @@ export enum ActionTypes {
   SetMessage = "set_message",
 }
 
-export enum Steps {
-  hello = "hello",
-  letsCalc = "letsCalc",
-  result = "result",
-  noname = "noname",
-  noCalc = "noCalc",
-}
-
 export interface ChatState {
   name: string;
   messages: Array<{

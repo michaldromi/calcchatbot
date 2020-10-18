@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import { colors, pxToRem } from "../../../lib/style-utils";
-import { scale, easing } from "../../../lib/animation.styled";
+import { colors, pxToRem } from "../../lib/style-utils";
+import { easing, scale, messageBubbleScale } from "../../lib/animation.styled";
+import { PositionType } from "./bubble";
 
-export const UserBubbleWrapper = styled.div<{ right?: boolean }>`
+export const UserBubbleWrapper = styled.div<{
+  right?: boolean;
+}>`
   display: flex;
-  align-items: flex-start;
+  align-items: flex-end;
   padding: 10px;
+
   ${({ right }) => right && "flex-direction: row-reverse;"}
   &:first-child {
     margin-top: auto;
@@ -16,37 +20,43 @@ export const AvatarWrapper = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: ${colors.Silver300};
+  background: ${colors.silver300};
+  will-change: transform;
   transform: scale(0);
   animation: 0.3s ${scale} 0.2s ${easing} forwards;
 `;
 
 export const BubbleStyled = styled.div<{
   right?: boolean;
-  position?: ["top", "middle", "bottom"];
+  position?: PositionType;
   play?: boolean;
 }>`
   max-width: calc(100% - 40px);
   min-width: 100px;
   border-radius: 25px;
-  display: inline-block;
   margin-bottom: 5px;
-  padding: 12px 20px;
   font-size: ${pxToRem(15)};
   line-height: 1.4;
+  will-change: transform;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   ${({ position, right }) => setBorderRadius(position, right)}
   ${({ right }) =>
     right
-      ? `background: ${colors.DarkSmoke};
-         color: ${colors.Silver100};
+      ? `background: ${colors.darkSmoke};
+         color: ${colors.silver100};
          transform-origin: 100% 50%;`
-      : `background: ${colors.Silver100};
-         color: ${colors.DarkSmoke}; 
+      : `background: ${colors.silver100};
+         color: ${colors.darkSmoke}; 
          transform-origin: 0 50%;`}
   
-  transform: scale(0);
-  animation: 0.3s ${scale} 0.6s ${easing} forwards;
+  height: 0;
+  overflow: hidden;
+  transform: scale(0) translate3d(0, -10px, 0);
+  animation: 0.3s ${messageBubbleScale} 0.6s ${easing} forwards;
   animation-play-state: ${({ play }) => (play ? "running" : "paused")};
 `;
 

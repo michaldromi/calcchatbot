@@ -1,10 +1,12 @@
 import React from "react";
 import { BubbleStyled } from "./bubble.styled";
 
+export type PositionType = "" | "top" | "middle" | "bottom";
+
 interface BubbleProps {
   children: React.ReactNode;
   right?: boolean;
-  position?: string;
+  position?: PositionType;
   setAnimation: (currentAnimationIdx) => void;
   currentAnimationIdx: number;
   index: number;

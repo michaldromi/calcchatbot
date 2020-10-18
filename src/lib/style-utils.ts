@@ -1,9 +1,10 @@
 export const colors = {
-  Silver100: "#f2f2f2",
-  Silver300: "#fcf3f5",
-  Silver400: "#ececec",
-  DarkSmoke: "#4a4a4a",
-  HotPink: "#ff0078",
+  silver100: "#f2f2f2",
+  silver300: "#fcf3f5",
+  silver400: "#ececec",
+  darkSmoke: "#4a4a4a",
+  lightSmoke: "#7a7a7a",
+  hotPink: "#ff0078",
 };
 
 export const baseFontSize = 12;

@@ -7,3 +7,17 @@ export const scale = keyframes`
     transform: scale(1);
   }
 `;
+
+export const messageBubbleScale = keyframes`
+  to {
+    transform: scale(1) translate3d(0,0,0);
+    height: auto;
+    padding: 10px 20px;
+  }
+`;
+
+export const semiFade = keyframes`
+  to {
+    opacity: 0.5;
+  }
+`;
