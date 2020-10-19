@@ -5,6 +5,7 @@ import { ActionTypes } from "../use-chat-state";
 import { BotMsgs, niceToMeet } from "../bot-messages";
 import { ChatInputSection, ChatInputWrapper } from "./chat-input.styled";
 import { setValueOnSessionStorage } from "../../lib/handle-storage";
+import { delay } from "../../lib/helpers";
 
 const ChatInput = ({ dispatch, name }) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -23,10 +24,10 @@ const ChatInput = ({ dispatch, name }) => {
   };
 
   const handleCalc = ({ val }) => {
-    const calcResult = calc({ exp: val });
+    const calcResult = calc({ exp: val }).toString();
     dispatch({
       type: ActionTypes.SetMessage,
-      message: [calcResult.toString(), ...BotMsgs.result.content],
+      message: [calcResult, ...BotMsgs.result.content],
     });
   };
 
@@ -37,7 +38,17 @@ const ChatInput = ({ dispatch, name }) => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleUserVal = ({ val }) => {
+    const isMath = isMathExpression(val);
+
+    if (!name) {
+      isMath ? handleNoName() : handleSetName({ val });
+    } else {
+      isMath ? handleCalc({ val }) : handleNoCalc();
+    }
+  };
+
+  const handleSubmit = async () => {
     const { current } = inputRef || null;
     const val = current?.value.trim() || "";
 
@@ -48,14 +59,7 @@ const ChatInput = ({ dispatch, name }) => {
     // set user's input value
     dispatch({ type: ActionTypes.SetMessage, message: [val], isUser: true });
 
-    const isMath = isMathExpression(val);
-    setTimeout(() => {
-      if (!name) {
-        isMath ? handleNoName() : handleSetName({ val });
-      } else {
-        isMath ? handleCalc({ val }) : handleNoCalc();
-      }
-    }, 2000);
+    await delay({ func: () => handleUserVal({ val }) });
 
     if (current) {
       current.value = "";

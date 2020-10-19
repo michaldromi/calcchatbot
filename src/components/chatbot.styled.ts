@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const ChatBotWrapper = styled.div`
   width: 100%;
   max-width: 414px;
+  min-height: 100vh;
   margin: 0 auto;
-  height: 100vh;
   background: #fff;
   display: flex;
   flex-direction: column;

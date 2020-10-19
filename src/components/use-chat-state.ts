@@ -1,3 +1,6 @@
+import { useReducer } from "react";
+import { BotMsgs, getHasNameContent } from "./bot-messages";
+
 export enum ActionTypes {
   SetName = "set_name",
   SetMessage = "set_message",
@@ -28,4 +31,19 @@ export const chatReducer = (state: ChatState, action: Action): ChatState => {
         ],
       };
   }
+};
+
+export const useChatState = ({ name }: { name: string }) => {
+  const [state, dispatch] = useReducer(chatReducer, {
+    name,
+    messages: [
+      name
+        ? {
+            content: [...getHasNameContent(name)],
+          }
+        : { content: BotMsgs.hello.content },
+    ],
+  });
+
+  return { state, dispatch };
 };

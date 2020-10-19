@@ -1,8 +1,19 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import UserBubble from "../user-bubbles/index";
 import { MessagePanelWrapper } from "./panel.styled";
+import { delay } from "../../lib/helpers";
 
 const MessagePanel = ({ messages }) => {
+  const [isLoadingState, setIsLoadingState] = useState(true);
+
+  useEffect(() => {
+    const setInitState = async () => {
+      await delay({ func: () => setIsLoadingState(false) });
+    };
+
+    setInitState();
+  }, []);
+
   const getAvatar = (isUser) => {
     if (isUser) {
       return "../../assets/iconfinder_cactus_cacti_avatar_pirate_4043242.svg";
@@ -18,6 +29,7 @@ const MessagePanel = ({ messages }) => {
           content={it.content}
           avatarSrc={getAvatar(it.isUser)}
           right={it.isUser}
+          isLoadingState={idx === 0 && isLoadingState}
         />
       ))}
     </MessagePanelWrapper>

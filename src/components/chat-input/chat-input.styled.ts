@@ -6,6 +6,9 @@ export const ChatInputSection = styled.div`
   background: ${colors.silver100};
   padding: 15px;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  bottom: 0;
+  left: 0;
 `;
 
 export const ChatInputWrapper = styled.div`

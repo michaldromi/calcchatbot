@@ -5,7 +5,7 @@ export const isMathExpression = (val: string) => {
 };
 
 export const calc = ({ exp }: { exp: string }) => {
-  const mathArr = exp.split("");
+  const mathArr = exp.split(/([-+*\/])/);
 
   return mathArr.reduce((acc, it, idx, arr) => {
     if (isNaN(Number(it))) {

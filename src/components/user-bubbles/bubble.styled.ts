@@ -1,11 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colors, pxToRem } from "../../lib/style-utils";
-import {
-  easing,
-  scale,
-  messageBubbleScale,
-  fadeIn,
-} from "../../lib/animation.styled";
+import { easing, scale, messageBubbleScale } from "../../lib/animation.styled";
 import { PositionType } from "./bubble";
 
 export const UserBubbleWrapper = styled.div<{
@@ -21,15 +16,18 @@ export const UserBubbleWrapper = styled.div<{
   }
 `;
 
-export const AvatarWrapper = styled.div`
+export const AvatarWrapper = styled.div<{ initState: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 50%;
   background: ${colors.silver300};
   will-change: transform;
   transition: transform ease 0.7s;
-  transform: scale(0);
-  animation: 0.3s ${scale} 0.2s ${easing} forwards;
+
+  ${({ initState }) =>
+    initState
+      ? `transform: scale(3) translate3d(150%,-15vh,0);`
+      : AvatarAnimation}
 `;
 
 export const BubbleStyled = styled.div<{
@@ -74,6 +72,11 @@ export const MessagesWrapper = styled.div<{ right?: boolean }>`
     right
       ? "align-items: flex-end; margin-right: 10px;"
       : "margin-left: 10px;"};
+`;
+
+const AvatarAnimation = css`
+  transform: scale(0);
+  animation: 0.3s ${scale} 0.2s ${easing} forwards;
 `;
 
 const setBorderRadius = (pos, right) => {
