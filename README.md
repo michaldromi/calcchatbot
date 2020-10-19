@@ -1,4 +1,4 @@
-# Calculos Chat Bot
+# Calculator Chat Bot
 
 ## Scripts
 
